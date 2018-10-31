@@ -1,10 +1,13 @@
 import { createStackNavigator } from 'react-navigation'
 import { View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
+import Utils from '../utils'
 import HomeScreen from './HomeScreen';
 import BootScreen from './BootScreen';
 import AddPwdScreen from './AddPwdScreen';
 
+//设置系统语言
+Utils.setLanguage();
 export default Nav = createStackNavigator({
     Boot: {
         screen: BootScreen,

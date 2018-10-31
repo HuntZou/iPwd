@@ -59,7 +59,7 @@ export default class HomeScreen extends React.Component {
     }
 
     _separator = () => {
-        return <View style={{ height: 8, backgroundColor: '#00000000' }} />;
+        return <View style={{ height: 15, backgroundColor: '#00000000' }} />;
     }
     render() {
         return (

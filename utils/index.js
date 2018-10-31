@@ -1,5 +1,6 @@
+import deviceInfo from 'react-native-device-info'
 module.exports = {
-	formatDate: function(date, fmt) {
+	formatDate: function (date, fmt) {
 		if (typeof date !== 'object') date = new Date(date);
 		fmt = fmt || 'yyyy-MM-dd hh:mm:ss';
 		var o = {
@@ -15,5 +16,17 @@ module.exports = {
 		for (var k in o)
 			if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
 		return fmt;
+	},
+	setLanguage: function () {
+		var  evt = 'zh-cn';
+		if (evt.indexOf('zh-cn') > -1) {
+			global.language = 'zh_hans'
+			return
+		}
+		if (evt.indexOf('en') > -1) {
+			global.language = 'en'
+			return
+		}
+		global.language = 'zh_hans'
 	}
 }
