@@ -1,6 +1,6 @@
 module.exports = {
 	formatDate: function(date, fmt) {
-		if (typeof a !== 'object') date = new Date(date);
+		if (typeof date !== 'object') date = new Date(date);
 		fmt = fmt || 'yyyy-MM-dd hh:mm:ss';
 		var o = {
 			'M+': date.getMonth() + 1,
