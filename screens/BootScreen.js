@@ -10,7 +10,7 @@ export default class BootScreen extends React.Component {
     render() {
         return (
             <View style={style.welcome_word}>
-                <Text>Welcome use IPwd</Text>
+                <Text>Thanks for you use iPwd</Text>
             </View>
         );
     }

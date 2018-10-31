@@ -28,7 +28,7 @@ export default class PwdListItem extends React.Component {
 
     /**时间戳转换时间 */
     _timeTransform(time) {
-        var result = '11995-06-13 00:00:00'
+        var result = '1995-06-13 00:00:00'
         var reg = /^\d{13}$/g
         if (reg.test(time)) {
             var date = new Date(time);
