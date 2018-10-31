@@ -29,12 +29,15 @@ export default Nav = createStackNavigator({
         initialRouteName: 'Boot',
         navigationOptions: {
             headerStyle: {
-                backgroundColor: '#f4511e',
+                backgroundColor: '#3770fa',
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
                 fontWeight: 'bold',
             },
         },
+        cardStack: {
+            gesturesEnabled: true 
+        }
     }
 )
