@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Picker, ScrollView, Button, StyleSheet, AsyncStorage, Alert } from 'react-native';
+import { View, Text, TextInput, Picker, ScrollView, Button, StyleSheet, AsyncStorage, Alert, TouchableOpacity } from 'react-native';
 
 export default class AddPwdScreen extends React.Component {
     constructor(props) {
@@ -18,12 +18,23 @@ export default class AddPwdScreen extends React.Component {
             var { category, name, account, pwd, comment } = this.state;
             var pwd = { category, name, account, pwd, comment };
 
-            var currentTime = new Date().format('yyyy-MM-dd HH:mm:ss')
+            var currentTime = new Date().getTime();
 
             pwd.recordTime = currentTime;
             pwd.updateTime = currentTime;
             pwd.icon = 'https://png.icons8.com/color/50/000000/bing.png';
-            pwd.key = currentTime;
+            pwd.key = 'zh' + currentTime;
+
+            //确保每个属性都不为空
+            for (const key in pwd) {
+                if (pwd.hasOwnProperty(key)) {
+                    const element = pwd[key];
+                    if (!element || element == '') {
+                        Alert.alert('You must complete form');
+                        return;
+                    }
+                }
+            }
 
             var pwds_str = await AsyncStorage.getItem('pwds');
             if (pwds_str == null) {
@@ -36,7 +47,7 @@ export default class AddPwdScreen extends React.Component {
 
             Alert.alert("storage success")
         } catch (error) {
-            Alert.alert("storage pwd error,plz exit app and try agina")
+            Alert.alert("storage pwd error:" + error)
         }
     }
 
@@ -70,7 +81,11 @@ export default class AddPwdScreen extends React.Component {
                         </Picker>
                     </View>
                 </ScrollView>
-                <Button style={style.submit_btn} onPress={this._storagePwd} title='SUBMIT' />
+                <TouchableOpacity onPress={this._storagePwd} >
+                    <View style={style.submit_btn_home}>
+                        <Text style={style.submit_btn} >SUBMIT</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -88,7 +103,15 @@ const style = StyleSheet.create({
         paddingHorizontal: 5,
     },
     submit_btn: {
-        height: 80
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    submit_btn_home: {
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9ACD32'
     },
     item_home: {
         marginTop: 10
