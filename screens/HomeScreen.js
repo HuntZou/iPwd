@@ -14,80 +14,54 @@ export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visualPwds: [
-                {
-                    key: 'a',
-                    category: "commonly",
-                    name: 'MSN',
-                    recordTime: '2018-09-26',
-                    updateTime: '2019-01-11',
-                    comment: 'it is very importent for me',
-                    account: 'zouheng613@163.com',
-                    pwd: '12345678',
-                    icon: '../assets/bing_icon.png'
-                },
-                {
-                    key: 'b',
-                    category: "sensitive",
-                    name: 'QQ',
-                    recordTime: '2018-09-26',
-                    updateTime: '2019-01-11',
-                    comment: 'if you want pwd,call me',
-                    account: '709434129',
-                    pwd: 'abcdefg',
-                    icon: '../assets/qq_icon.png'
-                },
-                {
-                    key: 'c',
-                    category: "sensitive",
-                    name: 'Email',
-                    recordTime: '2018-09-26',
-                    updateTime: '2019-01-11',
-                    comment: 'no word to say',
-                    account: 'v-huzou@expedia.com',
-                    pwd: 'sdjs%4d*@js',
-                    icon: '../assets/email_icon.png'
-                },
-            ],
-            allPwds: [],
-            keyword: ''
+            virtualPwds: [],
+            keyword: '',
+            refreshing: false
         }
     }
 
     _retrievePwd = async () => {
+        this.setState({ refreshing: true })
         try {
             const value = await AsyncStorage.getItem('pwds');
             if (value !== null) {
                 console.log(value)
                 this.setState({
-                    allPwds: JSON.parse(value)
+                    virtualPwds: JSON.parse(value)
                 })
             }
         } catch (error) {
             Alert.alert("retrieve pwd occur error:" + error)
+        } finally {
+            this.setState({ refreshing: false })
         }
     }
 
     /**使用关键词搜索 */
-    _searchPwd = (keyword) => {
-        if (keyword == null || keyword.trim() === '')
-            return this.state.allPwds;
-        var visualPwds = [];
-        this.state.allPwds.map(pwd => {
-            for (const key in pwd) {
-                if (pwd.hasOwnProperty(key)) {
-                    const element = pwd[key];
-                    if (element.indexOf(keyword)) {
-                        visualPwds.push(pwd);
-                        break;
+    _searchPwd = async (keyword) => {
+        AsyncStorage.getItem('pwds').then(pwds_str => {
+            const pwds = JSON.parse(pwds_str);
+
+            if (keyword == null || keyword.trim() === '')
+                return pwds;
+
+            var virualPwds = [];
+            pwds.map(pwd => {
+                for (const key in pwd) {
+                    if (pwd.hasOwnProperty(key)) {
+                        const element = pwd[key] + '';
+                        if (element.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) {
+                            virualPwds.push(pwd);
+                            break;
+                        }
                     }
                 }
-            }
-        })
-        return visualPwds;
+            })
+            this.setState({ virtualPwds: virualPwds });
+        }).catch(error => Alert.alert('search error:' + error))
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         this._retrievePwd();
     }
 
@@ -99,11 +73,13 @@ export default class HomeScreen extends React.Component {
             <View style={style.container}>
                 {/*顶部搜索框*/}
                 <View style={style.search_box}>
-                    <TextInput onChangeText={(text) => this.setState({ keyword: text })} style={style.search_input} />
+                    <TextInput onChangeText={text => this._searchPwd(text)} style={style.search_input} />
                 </View>
                 <FlatList
+                    refreshing={this.state.refreshing}
+                    onRefresh={this._retrievePwd}
                     ItemSeparatorComponent={this._separator}
-                    data={this._searchPwd()}
+                    data={this.state.virtualPwds}
                     renderItem={({ item }) => <PwdListItem pwdInfo={item} />}
                 />
             </View>

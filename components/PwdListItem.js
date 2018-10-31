@@ -26,6 +26,17 @@ export default class PwdListItem extends React.Component {
         return color;
     }
 
+    /**时间戳转换时间 */
+    _timeTransform(time) {
+        var result = '11995-06-13 00:00:00'
+        var reg = /^\d{13}$/g
+        if (reg.test(time)) {
+            var date = new Date(time);
+            result = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        }
+        return result;
+    }
+
     render() {
         const { pwdInfo } = this.props;
         return (
@@ -52,8 +63,8 @@ export default class PwdListItem extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Text style={style.pwd_time}>rt{pwdInfo.recordTime}</Text>
-                        <Text style={style.pwd_time}>ut:{pwdInfo.updateTime}</Text>
+                        <Text style={style.pwd_time}>rt{this._timeTransform(pwdInfo.recordTime)}</Text>
+                        <Text style={style.pwd_time}>ut:{this._timeTransform(pwdInfo.updateTime)}</Text>
                     </View>
                 </View>
             </View>
