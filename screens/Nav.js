@@ -16,7 +16,7 @@ export default Nav = createStackNavigator({
         screen: HomeScreen,
         navigationOptions: ({ navigation }) => ({
             headerLeft: null,
-            headerRight: <TouchableOpacity onPress={() => navigation.navigate("AddPwd")}><Image style={{ width: 25, height: 25, marginRight: 10 }} source={{ uri: '../assets/plus_math.png' }} /></TouchableOpacity>
+            headerRight: <TouchableOpacity onPress={() => navigation.navigate("AddPwd")}><Image style={{ width: 25, height: 25, marginRight: 10 }} source={require('../assets/plus_math.png')} /></TouchableOpacity>
         }),
     },
     AddPwd: {
