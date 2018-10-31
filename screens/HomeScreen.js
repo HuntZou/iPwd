@@ -24,7 +24,7 @@ export default class HomeScreen extends React.Component {
                     comment: 'it is very importent for me',
                     account: 'zouheng613@163.com',
                     pwd: '12345678',
-                    icon: 'https://png.icons8.com/color/50/000000/bing.png'
+                    icon: '../assets/bing_icon.png'
                 },
                 {
                     key: 'b',
@@ -35,7 +35,7 @@ export default class HomeScreen extends React.Component {
                     comment: 'if you want pwd,call me',
                     account: '709434129',
                     pwd: 'abcdefg',
-                    icon: 'https://png.icons8.com/color/50/000000/qq.png'
+                    icon: '../assets/qq_icon.png'
                 },
                 {
                     key: 'c',
@@ -46,7 +46,7 @@ export default class HomeScreen extends React.Component {
                     comment: 'no word to say',
                     account: 'v-huzou@expedia.com',
                     pwd: 'sdjs%4d*@js',
-                    icon: 'https://png.icons8.com/doodle/50/000000/email.png'
+                    icon: '../assets/email_icon.png'
                 },
             ],
             allPwds: [],

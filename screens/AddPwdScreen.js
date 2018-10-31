@@ -22,7 +22,7 @@ export default class AddPwdScreen extends React.Component {
 
             pwd.recordTime = currentTime;
             pwd.updateTime = currentTime;
-            pwd.icon = 'https://png.icons8.com/color/50/000000/bing.png';
+            pwd.icon = '../assets/bing_icon.png';
             pwd.key = currentTime;
 
             var pwds_str = await AsyncStorage.getItem('pwds');
