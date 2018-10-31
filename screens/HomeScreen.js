@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
             var virualPwds = [];
             pwds.map(pwd => {
                 for (const key in pwd) {
-                    if(pwd[key].toLowerCase().indexOf(keyword.toLowerCase())!== -1){
+                    if(typeof pwd[key] ==='string' &&  pwd[key].toLowerCase().indexOf(keyword.toLowerCase())!== -1){
                         virualPwds.push(pwd);
                         break;
                     }
