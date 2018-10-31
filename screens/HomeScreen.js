@@ -24,12 +24,10 @@ export default class HomeScreen extends React.Component {
         this.setState({ refreshing: true })
         try {
             const value = await AsyncStorage.getItem('pwds');
-            if (value !== null) {
-                console.log(value)
-                this.setState({
-                    virtualPwds: JSON.parse(value)
-                })
-            }
+            if(!value)return;
+            this.setState({
+                virtualPwds: JSON.parse(value)
+            })
         } catch (error) {
             Alert.alert("retrieve pwd occur error:" + error)
         } finally {
@@ -41,19 +39,14 @@ export default class HomeScreen extends React.Component {
     _searchPwd = async (keyword) => {
         AsyncStorage.getItem('pwds').then(pwds_str => {
             const pwds = JSON.parse(pwds_str);
-
-            if (keyword == null || keyword.trim() === '')
-                return pwds;
+            if(!keyword)return pwds;
 
             var virualPwds = [];
             pwds.map(pwd => {
                 for (const key in pwd) {
-                    if (pwd.hasOwnProperty(key)) {
-                        const element = pwd[key] + '';
-                        if (element.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) {
-                            virualPwds.push(pwd);
-                            break;
-                        }
+                    if(pwd[key].toLowerCase().indexOf(keyword.toLowerCase())!== -1){
+                        virualPwds.push(pwd);
+                        break;
                     }
                 }
             })

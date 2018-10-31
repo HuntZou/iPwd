@@ -1,4 +1,5 @@
 import React from 'react';
+import Utils from '../utils';
 import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 
 export default class PwdListItem extends React.Component {
@@ -12,7 +13,7 @@ export default class PwdListItem extends React.Component {
 
     /**判断该用什么背景颜色的卡片 */
     bgColor(category) {
-        var color = 'rgba(0,0,0,0.3)';
+        var color = '';
         switch (category) {
             case 'commonly':
                 color = '#EE1289';
@@ -24,17 +25,6 @@ export default class PwdListItem extends React.Component {
                 color = 'rgba(0,0,0,0.3)';
         }
         return color;
-    }
-
-    /**时间戳转换时间 */
-    _timeTransform(time) {
-        var result = '1995-06-13 00:00:00'
-        var reg = /^\d{13}$/g
-        if (reg.test(time)) {
-            var date = new Date(time);
-            result = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        }
-        return result;
     }
 
     render() {
@@ -63,8 +53,8 @@ export default class PwdListItem extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Text style={style.pwd_time}>rt{this._timeTransform(pwdInfo.recordTime)}</Text>
-                        <Text style={style.pwd_time}>ut:{this._timeTransform(pwdInfo.updateTime)}</Text>
+                        <Text style={style.pwd_time}>rt:{Utils.formatDate(pwdInfo.recordTime)}</Text>
+                        <Text style={style.pwd_time}>ut:{Utils.formatDate(pwdInfo.updateTime)}</Text>
                     </View>
                 </View>
             </View>

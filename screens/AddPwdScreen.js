@@ -27,19 +27,14 @@ export default class AddPwdScreen extends React.Component {
 
             //确保每个属性都不为空
             for (const key in pwd) {
-                if (pwd.hasOwnProperty(key)) {
-                    const element = pwd[key];
-                    if (!element || element == '') {
-                        Alert.alert('You must complete form');
+                if(!pwd[key]){
+                    Alert.alert('You must complete form');
                         return;
-                    }
                 }
             }
 
             var pwds_str = await AsyncStorage.getItem('pwds');
-            if (pwds_str == null) {
-                pwds_str = '[]'
-            }
+            pwds_str = pwds_str || "[]";
             var pwds = JSON.parse(pwds_str);
             pwds.push(pwd)
 
