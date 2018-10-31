@@ -1,4 +1,5 @@
 import React from 'react';
+import string from '../utils/i18n';
 import { View, Text, TextInput, Picker, ScrollView, Button, StyleSheet, AsyncStorage, Alert, TouchableOpacity } from 'react-native';
 
 export default class AddPwdScreen extends React.Component {
@@ -51,34 +52,34 @@ export default class AddPwdScreen extends React.Component {
             <View style={style.container}>
                 <ScrollView style={style.form_home}>
                     <View style={style.item_home}>
-                        <Text style={style.label}>name</Text>
+                        <Text style={style.label}>{string.name}</Text>
                         <TextInput onChangeText={(text) => this.setState({ name: text })} style={style.input} />
                     </View>
                     <View style={style.item_home}>
-                        <Text style={style.label}>account</Text>
+                        <Text style={style.label}>{string.account}</Text>
                         <TextInput onChangeText={(text) => this.setState({ account: text })} style={style.input} />
                     </View>
                     <View style={style.item_home}>
-                        <Text style={style.label}>password</Text>
+                        <Text style={style.label}>{string.password}</Text>
                         <TextInput onChangeText={(text) => this.setState({ pwd: text })} style={style.input} />
                     </View>
                     <View style={style.item_home}>
-                        <Text style={style.label}>comment</Text>
+                        <Text style={style.label}>{string.comment}</Text>
                         <TextInput onChangeText={(text) => this.setState({ comment: text })} style={style.input} />
                     </View>
                     <View style={style.item_home}>
-                        <Text style={style.label}>category</Text>
+                        <Text style={style.label}>{string.category}</Text>
                         <Picker
                             selectedValue={this.state.category}
                             onValueChange={(itemValue, itemIndex) => this.setState({ category: itemValue })}>
-                            <Picker.Item label="commonly" value="commonly" />
-                            <Picker.Item label="sensitive" value="sensitive" />
+                            <Picker.Item label={string.commonly} value="commonly" />
+                            <Picker.Item label={string.sensitive} value="sensitive" />
                         </Picker>
                     </View>
                 </ScrollView>
                 <TouchableOpacity onPress={this._storagePwd} >
                     <View style={style.submit_btn_home}>
-                        <Text style={style.submit_btn} >SUBMIT</Text>
+                        <Text style={style.submit_btn} >{string.submit}</Text>
                     </View>
                 </TouchableOpacity>
             </View>

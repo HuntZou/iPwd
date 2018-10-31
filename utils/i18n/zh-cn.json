@@ -1,0 +1,10 @@
+{
+    "name":"名称",
+    "account":"账户",
+    "password":"密码",
+    "comment":"注释",
+    "category":"类型",
+    "commonly":"一般的",
+    "sensitive":"敏感的",
+    "submit":"保存"
+}

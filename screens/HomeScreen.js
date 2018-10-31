@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
             var virualPwds = [];
             pwds.map(pwd => {
                 for (const key in pwd) {
-                    if(pwd[key].toLowerCase().indexOf(keyword.toLowerCase())!== -1){
+                    if(typeof pwd[key] ==='string' &&  pwd[key].toLowerCase().indexOf(keyword.toLowerCase())!== -1){
                         virualPwds.push(pwd);
                         break;
                     }
@@ -59,7 +59,7 @@ export default class HomeScreen extends React.Component {
     }
 
     _separator = () => {
-        return <View style={{ height: 8, backgroundColor: '#00000000' }} />;
+        return <View style={{ height: 15, backgroundColor: '#00000000' }} />;
     }
     render() {
         return (
