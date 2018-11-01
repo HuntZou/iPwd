@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, SectionList, TextInput, Button, StyleSheet, Image, FlatList, Alert, AsyncStorage, TouchableOpacity } from 'react-native';
+import { View, Text, SectionList, TextInput, Button, StyleSheet, Image, FlatList, Alert, AsyncStorage, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import PwdListItem from '../components/PwdListItem';
 /**
  * category:commonly Sensitive
@@ -31,7 +31,9 @@ export default class HomeScreen extends React.Component {
         } catch (error) {
             Alert.alert("retrieve pwd occur error:" + error)
         } finally {
-            this.setState({ refreshing: false })
+            setTimeout(() => {
+                this.setState({ refreshing: false })
+            }, 1000)
         }
     }
 
@@ -80,9 +82,17 @@ export default class HomeScreen extends React.Component {
                             renderItem={({ item }) => <PwdListItem pwdInfo={item} />}
                         />
                         :
-                        <View style={style.nopwd_tip_home}>
-                            <Text style={style.nopwd_tip}>You have not add any pwd</Text>
-                        </View>
+                        this.state.refreshing ?
+                            <View style={style.nopwd_tip_home}>
+                                <Text style={style.refreshing_tip}>Refreshing...</Text>
+                            </View>
+                            :
+                            <TouchableWithoutFeedback onPress={this._retrievePwd} style={{ flex: 1 }}>
+                                <View style={style.nopwd_tip_home}>
+                                    <Text style={style.nopwd_tip}>You have not add any password</Text>
+                                    <Text style={style.nopwd_tip}>Click blank to refresh.</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
                 }
                 {/**添加密码按钮 */}
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('AddPwd')} style={style.add_pwd_btn_home}>
@@ -94,6 +104,11 @@ export default class HomeScreen extends React.Component {
 }
 
 const style = StyleSheet.create({
+    refreshing_tip: {
+        fontWeight: 'bold',
+        fontSize: 25,
+        color: 'rgba(0,0,0,0.6)'
+    },
     add_pwd_btn_home: {
         position: 'absolute',
         bottom: 60,
@@ -111,7 +126,7 @@ const style = StyleSheet.create({
     nopwd_tip_home: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     container: {
         flexDirection: 'column',
