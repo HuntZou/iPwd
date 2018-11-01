@@ -1,4 +1,3 @@
-import deviceInfo from 'react-native-device-info'
 module.exports = {
 	formatDate: function (date, fmt) {
 		if (typeof date !== 'object') date = new Date(date);

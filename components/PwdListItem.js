@@ -30,11 +30,11 @@ export default class PwdListItem extends React.Component {
     render() {
         const { pwdInfo } = this.props;
         return (
-            <View style={[style.card, { backgroundColor: this.bgColor(pwdInfo.category),shadowColor:this.bgColor(pwdInfo.category)}]}>
+            <View style={[style.card, { backgroundColor: this.bgColor(pwdInfo.category), shadowColor: this.bgColor(pwdInfo.category) }]}>
                 <View>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={pwdInfo.icon} style={{ width: 45, height: 45 }} />
+                            <Image source={{ uri: pwdInfo.icon }} style={{ width: 45, height: 45 }} />
                             <Text style={{ fontWeight: 'bold', color: 'white', fontSize: 24 }}>{pwdInfo.name}</Text>
                         </View>
                         <View>
@@ -72,7 +72,7 @@ const style = StyleSheet.create({
         borderRadius: 10,
         marginHorizontal: 10,
         padding: 5,
-        shadowRadius:20
+        shadowRadius: 20
     },
     pwd_time: {
         color: '#CDC5BF'

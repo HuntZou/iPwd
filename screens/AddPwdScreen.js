@@ -23,14 +23,15 @@ export default class AddPwdScreen extends React.Component {
 
             pwd.recordTime = currentTime;
             pwd.updateTime = currentTime;
-            pwd.icon = '../assets/bing_icon.png';
-            pwd.key = currentTime;
+            pwd.icon = 'https://png.icons8.com/color/40/000000/private2.png';
+            //key只能为string类型
+            pwd.key = currentTime + '';
 
             //确保每个属性都不为空
             for (const key in pwd) {
-                if(!pwd[key]){
+                if (!pwd[key]) {
                     Alert.alert('You must complete form');
-                        return;
+                    return;
                 }
             }
 
