@@ -37,7 +37,7 @@ export default class HomeScreen extends React.Component {
         }
     }
 
-    /**使用关键词搜索 */
+    /**Search with keyword */
     _searchPwd = async (keyword) => {
         AsyncStorage.getItem('pwds').then(pwds_str => {
             const pwds = JSON.parse(pwds_str);
@@ -67,7 +67,7 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View style={style.container}>
-                {/*顶部搜索框*/}
+                {/*search box on top */}
                 <View style={style.search_box}>
                     <TextInput underlineColorAndroid='transparent' onChangeText={text => this._searchPwd(text)} style={style.search_input} />
                 </View>
@@ -94,7 +94,7 @@ export default class HomeScreen extends React.Component {
                                 </View>
                             </TouchableWithoutFeedback>
                 }
-                {/**添加密码按钮 */}
+                {/**add pwd btn */}
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('AddPwd')} style={style.add_pwd_btn_home}>
                     <Image source={require('../assets/icons8-plus-96.png')} style={style.add_pwd_btn} />
                 </TouchableOpacity>

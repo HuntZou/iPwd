@@ -6,7 +6,7 @@ import HomeScreen from './HomeScreen';
 import BootScreen from './BootScreen';
 import AddPwdScreen from './AddPwdScreen';
 
-//设置系统语言
+//languge setting
 Utils.setLanguage();
 export default Nav = createStackNavigator({
     Boot: {

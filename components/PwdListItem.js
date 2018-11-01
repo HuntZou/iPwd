@@ -11,7 +11,7 @@ export default class PwdListItem extends React.Component {
         }
     }
 
-    /**判断该用什么背景颜色的卡片 */
+    /**what bgcolor should be of pwd card */
     bgColor(category) {
         var color = '';
         switch (category) {
