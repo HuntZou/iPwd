@@ -1,10 +1,10 @@
 {
-    "name":"name",
-    "account":"account",
-    "password":"password",
-    "comment":"comment",
-    "category":"category",
-    "commonly":"commonly",
-    "sensitive":"sensitive",
-    "submit":"SUBMIT"
+  "name": "name",
+  "account": "account",
+  "password": "password",
+  "comment": "comment",
+  "category": "category",
+  "commonly": "commonly",
+  "sensitive": "sensitive",
+  "submit": "SUBMIT"
 }

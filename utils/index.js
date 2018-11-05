@@ -1,31 +1,41 @@
 module.exports = {
-	formatDate: function (date, fmt) {
-		if (typeof date !== 'object') date = new Date(date);
-		fmt = fmt || 'yyyy-MM-dd hh:mm:ss';
-		var o = {
-			'M+': date.getMonth() + 1,
-			'd+': date.getDate(),
-			'h+': date.getHours(),
-			'm+': date.getMinutes(),
-			's+': date.getSeconds(),
-			'q+': Math.floor((date.getMonth() + 3) / 3),
-			'S': date.getMilliseconds()
-		};
-		if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
-		for (var k in o)
-			if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
-		return fmt;
-	},
-	setLanguage: function () {
-		var  evt = 'zh-cn';
-		if (evt.indexOf('zh-cn') > -1) {
-			global.language = 'zh_hans'
-			return
-		}
-		if (evt.indexOf('en') > -1) {
-			global.language = 'en'
-			return
-		}
-		global.language = 'zh_hans'
-	}
-}
+  formatDate: function(date, fmt) {
+    if (typeof date !== "object") date = new Date(date);
+    fmt = fmt || "yyyy-MM-dd hh:mm:ss";
+    var o = {
+      "M+": date.getMonth() + 1,
+      "d+": date.getDate(),
+      "h+": date.getHours(),
+      "m+": date.getMinutes(),
+      "s+": date.getSeconds(),
+      "q+": Math.floor((date.getMonth() + 3) / 3),
+      S: date.getMilliseconds()
+    };
+    if (/(y+)/.test(fmt))
+      fmt = fmt.replace(
+        RegExp.$1,
+        (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+      );
+    for (var k in o)
+      if (new RegExp("(" + k + ")").test(fmt))
+        fmt = fmt.replace(
+          RegExp.$1,
+          RegExp.$1.length == 1
+            ? o[k]
+            : ("00" + o[k]).substr(("" + o[k]).length)
+        );
+    return fmt;
+  },
+  setLanguage: function() {
+    var evt = "zh-cn";
+    if (evt.indexOf("zh-cn") > -1) {
+      global.language = "zh_hans";
+      return;
+    }
+    if (evt.indexOf("en") > -1) {
+      global.language = "en";
+      return;
+    }
+    global.language = "zh_hans";
+  }
+};
