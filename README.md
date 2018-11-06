@@ -7,4 +7,4 @@ It provide a simple and security way to help manage your password
 It looks like this:
 
 <img src="./pics/iPwd.jpeg" width=200/>
-<img src="./pics/setting.jpeg" width=200/>
+<img src="./pics/setting.jpg" width=200/>
