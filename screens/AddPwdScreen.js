@@ -155,6 +155,7 @@ const style = StyleSheet.create({
     marginTop: 10
   },
   input: {
-    height: 40
+    height: 40,
+    marginHorizontal: 20
   }
 });

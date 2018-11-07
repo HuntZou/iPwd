@@ -6,6 +6,8 @@ import HomeScreen from "./HomeScreen";
 import BootScreen from "./BootScreen";
 import AddPwdScreen from "./AddPwdScreen";
 import SettingScreen from "./SettringScreen";
+import AboutScreen from "./AboutScreen";
+import FeedbackScreen from "./FeedbackScreen";
 
 //languge setting
 Utils.setLanguage();
@@ -36,10 +38,16 @@ export default (Nav = createStackNavigator(
       screen: AddPwdScreen,
       navigationOptions: ({ navigation }) => ({})
     },
+    About: {
+      screen: AboutScreen
+    },
+    Feedback: {
+      screen: FeedbackScreen
+    },
     Setting: {
       screen: SettingScreen,
       navigationOptions: {
-        title:'Setting'
+        title: "Setting"
       }
     }
   },

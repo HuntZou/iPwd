@@ -40,10 +40,7 @@ export default class HomeScreen extends React.Component {
     this.setState({ refreshing: true });
     try {
       const value = await AsyncStorage.getItem("pwds");
-      if (!value) return;
-      this.setState({
-        virtualPwds: JSON.parse(value)
-      });
+      this.setState({ virtualPwds: JSON.parse(!!value ? value : "[]") });
     } catch (error) {
       Alert.alert("retrieve pwd occur error:" + error);
     } finally {
@@ -106,6 +103,17 @@ export default class HomeScreen extends React.Component {
     return <View style={{ height: 15, backgroundColor: "#00000000" }} />;
   };
   render() {
+    const shadowOpt = {
+      width: 160,
+      height: 170,
+      color: "#000",
+      border: 2,
+      radius: 3,
+      opacity: 0.2,
+      x: 0,
+      y: 3,
+      style: { marginVertical: 5 }
+    };
     return (
       <View style={style.container}>
         {/*search box on top */}
@@ -136,7 +144,7 @@ export default class HomeScreen extends React.Component {
           >
             <View style={style.nopwd_tip_home}>
               <Text style={style.nopwd_tip}>You have not add any password</Text>
-              <Text style={style.nopwd_tip}>Click blank to refresh.</Text>
+              <Text style={style.nopwd_tip}>Or click blank to refresh.</Text>
             </View>
           </TouchableWithoutFeedback>
         )}

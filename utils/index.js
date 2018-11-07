@@ -27,7 +27,7 @@ module.exports = {
     return fmt;
   },
   setLanguage: function() {
-    var evt = "zh-cn";
+    var evt = "en";
     if (evt.indexOf("zh-cn") > -1) {
       global.language = "zh_hans";
       return;
