@@ -46,9 +46,18 @@ export default class AddPwdScreen extends React.Component {
         }
       }
 
-      var pwds_str = await AsyncStorage.getItem("pwds");
-      pwds_str = pwds_str || "[]";
+      var pwds_str = (await AsyncStorage.getItem("pwds")) || "[]";
       var pwds = JSON.parse(pwds_str);
+
+      //if pwd.name+pwd.account has exist in pwds,storage fail
+
+      for (var i = 0; i < pwds.length; i++) {
+        if (pwds[i].name + pwds[i].account === pwd.name + pwd.account) {
+          Alert.alert("Storage fail", "exist a same account in memory");
+          return;
+        }
+      }
+
       pwds.push(pwd);
 
       await AsyncStorage.setItem("pwds", JSON.stringify(pwds));

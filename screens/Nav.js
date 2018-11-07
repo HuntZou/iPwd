@@ -39,10 +39,16 @@ export default (Nav = createStackNavigator(
       navigationOptions: ({ navigation }) => ({})
     },
     About: {
-      screen: AboutScreen
+      screen: AboutScreen,
+      navigationOptions: {
+        header: null
+      }
     },
     Feedback: {
-      screen: FeedbackScreen
+      screen: FeedbackScreen,
+      navigationOptions: {
+        title: "Feedback"
+      }
     },
     Setting: {
       screen: SettingScreen,

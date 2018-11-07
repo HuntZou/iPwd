@@ -55,14 +55,15 @@ export default class HomeScreen extends React.Component {
     AsyncStorage.getItem("pwds")
       .then(pwds_str => {
         const pwds = JSON.parse(pwds_str);
-        if (!keyword) return pwds;
-
         var virualPwds = [];
         !!pwds &&
           pwds.map(pwd => {
             for (const key in pwd) {
               var value = pwd[key] + "";
-              if (value.toLowerCase().indexOf(keyword.toLowerCase()) !== -1) {
+              if (
+                !keyword ||
+                value.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
+              ) {
                 virualPwds.push(pwd);
                 break;
               }

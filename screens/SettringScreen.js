@@ -111,7 +111,9 @@ export default class SettingScreen extends React.Component {
             extra="Local"
             onClick={() =>
               Alert.alert(
-                "I`m sry,this function is missing.but what did I know,I`m just a dog."
+                "I`m sorry",
+                "This function is missing.but what do I know,I`m just a dog.",
+                [{ text: "Got it" }]
               )
             }
           >
