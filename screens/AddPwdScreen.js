@@ -114,9 +114,7 @@ export default class AddPwdScreen extends React.Component {
   };
 
   componentWillMount = () => {
-    {
-      /** get last screen passing parameters */
-    }
+    /** get last screen passing parameters */
     const pwdInfo = this.props.navigation.getParam("pwdInfo");
     this.setState(pwdInfo);
   };
