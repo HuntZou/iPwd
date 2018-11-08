@@ -1,3 +1,4 @@
+import { AsyncStorage } from "react-native";
 module.exports = {
   formatDate: function(date, fmt) {
     if (typeof date !== "object") date = new Date(date);
@@ -27,15 +28,9 @@ module.exports = {
     return fmt;
   },
   setLanguage: function() {
-    var evt = "en";
-    if (evt.indexOf("zh-cn") > -1) {
-      global.language = "zh_hans";
-      return;
-    }
-    if (evt.indexOf("en") > -1) {
-      global.language = "en";
-      return;
-    }
-    global.language = "zh_hans";
+    // get language setting
+    AsyncStorage.getItem("language").then(
+      lan => (global.language = !!lan ? lan : "en")
+    );
   }
 };

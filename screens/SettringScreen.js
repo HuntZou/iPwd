@@ -24,7 +24,9 @@ export default class SettingScreen extends React.Component {
   _doChoicLanguage = item => {
     this.setState({ currentLanguage: item.label, choiceLanguage: false });
     //set globel language setting
-    global.language = item.val;
+    AsyncStorage.setItem("language", item.val).then(() => {
+      global.language = item.val;
+    });
   };
   _doCleanCache = async () => {
     await AsyncStorage.clear();

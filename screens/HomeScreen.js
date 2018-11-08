@@ -12,7 +12,6 @@ import {
   TouchableWithoutFeedback,
   BackHandler
 } from "react-native";
-import Toast, { DURATION } from "react-native-easy-toast";
 import PwdListItem from "../components/PwdListItem";
 /**
  * category:commonly Sensitive
@@ -99,18 +98,7 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount = () => {
     this._retrievePwd();
-    //back btn handler on android,ios no effect
-    // todo if add handler there,it may cause a problem that whatever screen you double click back btn,it will make app exit.
-    // this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
-    //   this._exitApp(); // works best when the goBack is async
-    //   return true;
-    // });
   };
-
-  componentWillUnmount() {
-    //unmount back btn handler
-    // this.backHandler.remove();
-  }
 
   _separator = () => {
     return <View style={{ height: 15, backgroundColor: "#00000000" }} />;
@@ -177,7 +165,6 @@ export default class HomeScreen extends React.Component {
             style={style.add_pwd_btn}
           />
         </TouchableOpacity>
-        <Toast ref="toast" />
       </View>
     );
   }
