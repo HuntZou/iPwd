@@ -2,14 +2,12 @@ import React from "react";
 import {
   View,
   Text,
-  ScrollView,
-  Image,
   AsyncStorage,
   Alert,
   FlatList,
   TouchableOpacity
 } from "react-native";
-import { List, PickerView } from "antd-mobile-rn";
+import { List } from "antd-mobile-rn";
 
 const Item = List.Item;
 const Brief = Item.Brief;

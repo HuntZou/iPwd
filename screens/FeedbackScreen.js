@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput } from "react-native";
+import { View } from "react-native";
 import { TextareaItem, Button } from "antd-mobile-rn";
 
 export default class FeedbackScreen extends React.Component {

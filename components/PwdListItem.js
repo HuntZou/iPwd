@@ -7,12 +7,14 @@ import {
   Image,
   TouchableWithoutFeedback
 } from "react-native";
+import { Button } from "antd-mobile-rn";
 
 export default class PwdListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openEyes: false
+      openEyes: false,
+      showMenu: false
     };
   }
 
@@ -33,7 +35,7 @@ export default class PwdListItem extends React.Component {
   }
 
   render() {
-    const { pwdInfo } = this.props;
+    const { pwdInfo, navigation } = this.props;
     return (
       <View
         style={[
@@ -53,26 +55,51 @@ export default class PwdListItem extends React.Component {
               paddingVertical: 2
             }}
           >
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Image
-                source={{ uri: pwdInfo.icon }}
-                style={{ width: 35, height: 35 }}
-              />
-              <Text
-                style={{
-                  fontWeight: "bold",
-                  color: "white",
-                  fontSize: 24,
-                  marginLeft: 2
-                }}
-              >
-                {pwdInfo.name}
-              </Text>
-            </View>
+            <TouchableWithoutFeedback
+              onPress={() => this.setState({ showMenu: !this.state.showMenu })}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Image
+                  source={{ uri: pwdInfo.icon }}
+                  style={{ width: 35, height: 35 }}
+                />
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    fontSize: 24,
+                    marginLeft: 2
+                  }}
+                >
+                  {pwdInfo.name}
+                </Text>
+              </View>
+            </TouchableWithoutFeedback>
+
             <View>
               <Text style={{ color: "white" }}>{pwdInfo.account}</Text>
             </View>
           </View>
+          {this.state.showMenu ? (
+            <View style={{ flexDirection: "row" }}>
+              <Button
+                onClick={() =>
+                  navigation.navigate("AddPwd", { pwdInfo: pwdInfo })
+                }
+                type="primary"
+                style={{ flex: 1, marginHorizontal: 10, marginVertical: 5 }}
+              >
+                Edit
+              </Button>
+              <Button
+                type="warning"
+                style={{ flex: 1, marginHorizontal: 10, marginVertical: 5 }}
+                onClick={() => this.props.delItem(pwdInfo.key)}
+              >
+                Delete
+              </Button>
+            </View>
+          ) : null}
           <View style={style.line} />
         </View>
         <View>

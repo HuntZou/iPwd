@@ -1,5 +1,5 @@
 import { createStackNavigator } from "react-navigation";
-import { View, Image, TouchableOpacity } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Utils from "../utils";
 import HomeScreen from "./HomeScreen";

@@ -2,9 +2,7 @@ import React from "react";
 import {
   View,
   Text,
-  SectionList,
   TextInput,
-  Button,
   StyleSheet,
   Image,
   FlatList,
@@ -85,6 +83,20 @@ export default class HomeScreen extends React.Component {
     }
   };
 
+  /**delete pwd item */
+  _delItem = key => {
+    AsyncStorage.getItem("pwds").then(pwds_str => {
+      const pwds = JSON.parse(pwds_str);
+      for (var i = 0; i < pwds.length; i++) {
+        if (pwds[i].key === key) pwds.splice(i, 1);
+      }
+      AsyncStorage.setItem("pwds", JSON.stringify(pwds)).then(err => {
+        if (!!err) Alert.alert("I`m sry", "delete occured problem:" + err);
+        else this._retrievePwd();
+      });
+    });
+  };
+
   componentDidMount = () => {
     this._retrievePwd();
     //back btn handler on android,ios no effect
@@ -132,7 +144,13 @@ export default class HomeScreen extends React.Component {
             onRefresh={this._retrievePwd}
             ItemSeparatorComponent={this._separator}
             data={this.state.virtualPwds}
-            renderItem={({ item }) => <PwdListItem pwdInfo={item} />}
+            renderItem={({ item }) => (
+              <PwdListItem
+                pwdInfo={item}
+                navigation={this.props.navigation}
+                delItem={this._delItem}
+              />
+            )}
           />
         ) : this.state.refreshing ? (
           <View style={style.nopwd_tip_home}>
