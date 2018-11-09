@@ -36,7 +36,21 @@ export default (Nav = createStackNavigator(
     },
     AddPwd: {
       screen: AddPwdScreen,
-      navigationOptions: ({ navigation }) => ({})
+      navigationOptions: ({ navigation }) => ({
+        title: "Pwd Form",
+        headerRight: (
+          <TouchableOpacity
+            onPress={() => navigation.state.params.storagePwd()}
+          >
+            <Image
+              style={{ width: 25, height: 25, marginRight: 10 }}
+              source={{
+                uri: "https://img.icons8.com/material/40/ffffff/checkmark.png"
+              }}
+            />
+          </TouchableOpacity>
+        )
+      })
     },
     About: {
       screen: AboutScreen,

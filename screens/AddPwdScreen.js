@@ -6,11 +6,11 @@ import {
   TextInput,
   Picker,
   ScrollView,
-  Button,
   StyleSheet,
   AsyncStorage,
   Alert,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from "react-native";
 
 export default class AddPwdScreen extends React.Component {
@@ -119,6 +119,11 @@ export default class AddPwdScreen extends React.Component {
     this.setState(pwdInfo);
   };
 
+  componentDidMount = () => {
+    //bind add item function to navigation btn
+    this.props.navigation.setParams({ storagePwd: this._storagePwd });
+  };
+
   render() {
     return (
       <View style={style.container}>
@@ -158,6 +163,7 @@ export default class AddPwdScreen extends React.Component {
           <View style={style.item_home}>
             <Text style={style.label}>{string.category}</Text>
             <Picker
+              style={style.input}
               selectedValue={this.state.category}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({ category: itemValue })
@@ -168,11 +174,6 @@ export default class AddPwdScreen extends React.Component {
             </Picker>
           </View>
         </ScrollView>
-        <TouchableOpacity onPress={this._storagePwd}>
-          <View style={style.submit_btn_home}>
-            <Text style={style.submit_btn}>{string.submit}</Text>
-          </View>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -180,14 +181,15 @@ export default class AddPwdScreen extends React.Component {
 
 const style = StyleSheet.create({
   label: {
-    fontSize: 20
+    fontSize: 20,
+    flex: 2
   },
   container: {
     flex: 1,
     justifyContent: "space-between"
   },
   form_home: {
-    paddingHorizontal: 5
+    paddingHorizontal: 20
   },
   submit_btn: {
     color: "white",
@@ -201,10 +203,12 @@ const style = StyleSheet.create({
     backgroundColor: "#9ACD32"
   },
   item_home: {
-    marginTop: 10
+    marginTop: 20,
+    flexDirection: "row",
+    alignItems: "center"
   },
   input: {
     height: 40,
-    marginHorizontal: 20
+    flex: 3
   }
 });

@@ -41,6 +41,7 @@ export default class HomeScreen extends React.Component {
     } catch (error) {
       Alert.alert("retrieve pwd occur error:" + error);
     } finally {
+      //delay 1s for let people feel it has done refreshing
       setTimeout(() => {
         this.setState({ refreshing: false });
       }, 1000);
@@ -84,6 +85,7 @@ export default class HomeScreen extends React.Component {
 
   /**delete pwd item */
   _delItem = key => {
+    console.log("delete item");
     AsyncStorage.getItem("pwds").then(pwds_str => {
       const pwds = JSON.parse(pwds_str);
       for (var i = 0; i < pwds.length; i++) {

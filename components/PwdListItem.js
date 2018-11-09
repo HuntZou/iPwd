@@ -5,7 +5,8 @@ import {
   Text,
   StyleSheet,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 } from "react-native";
 import { Button } from "antd-mobile-rn";
 
@@ -33,6 +34,13 @@ export default class PwdListItem extends React.Component {
     }
     return color;
   }
+
+  _beforDel = pwdInfo => {
+    Alert.alert("Are sure", "you can`t get it back", [
+      { text: "Yes,I`m Sure", onPress: () => this.props.delItem(pwdInfo.key) },
+      { text: "No,Just Joking" }
+    ]);
+  };
 
   render() {
     const { pwdInfo, navigation } = this.props;
@@ -94,7 +102,7 @@ export default class PwdListItem extends React.Component {
               <Button
                 type="warning"
                 style={{ flex: 1, marginHorizontal: 10, marginVertical: 5 }}
-                onClick={() => this.props.delItem(pwdInfo.key)}
+                onClick={() => this._beforDel(pwdInfo)}
               >
                 Delete
               </Button>
