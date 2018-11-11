@@ -30,7 +30,7 @@ module.exports = {
   setLanguage: function() {
     // get language setting
     AsyncStorage.getItem("language").then(
-      lan => (global.language = !!lan ? lan : "en")
+      lan => (global.language.val = !!lan ? lan : "en")
     );
   }
 };

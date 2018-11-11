@@ -2,6 +2,7 @@ import { createStackNavigator } from "react-navigation";
 import { Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Utils from "../utils";
+import string from '../utils/i18n';
 import HomeScreen from "./HomeScreen";
 import BootScreen from "./BootScreen";
 import AddPwdScreen from "./AddPwdScreen";
@@ -37,7 +38,7 @@ export default (Nav = createStackNavigator(
     AddPwd: {
       screen: AddPwdScreen,
       navigationOptions: ({ navigation }) => ({
-        title: "Pwd Form",
+        title: string.addpwd,
         headerRight: (
           <TouchableOpacity
             onPress={() => navigation.state.params.storagePwd()}
@@ -61,13 +62,13 @@ export default (Nav = createStackNavigator(
     Feedback: {
       screen: FeedbackScreen,
       navigationOptions: {
-        title: "Feedback"
+        title: string.feedBack
       }
     },
     Setting: {
       screen: SettingScreen,
       navigationOptions: {
-        title: "Setting"
+        title: string.seeting
       }
     }
   },

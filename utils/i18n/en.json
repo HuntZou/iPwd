@@ -33,5 +33,7 @@
   "item":" item",
   "edit":"edit",
   "local":"local",
-  "miss_function": "This function is missing.but what do I know,I`m just a dog."
+  "miss_function": "This function is missing.but what do I know,I`m just a dog.",
+  "seeting":"Seeting",
+  "addpwd":"Pwd Form"
 }

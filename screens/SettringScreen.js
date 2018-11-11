@@ -18,7 +18,7 @@ export default class SettingScreen extends React.Component {
     super(props);
     this.state = {
       pwdCount: 0,
-      currentLanguage: global.language,
+      currentLanguage: global.language?global.language.value:"简体中文",
       choiceLanguage: false
     };
   }
@@ -26,8 +26,13 @@ export default class SettingScreen extends React.Component {
     this.setState({ currentLanguage: item.label, choiceLanguage: false });
     //set globel language setting
     AsyncStorage.setItem("language", item.val).then(() => {
-      global.language = item.val;
+      global.language = {
+        val:item.val,
+        value:item.label
+      }
     });
+    //goBack to home
+    this.props.navigation.navigate("Home")
   };
   _doCleanCache = async () => {
     await AsyncStorage.clear();
