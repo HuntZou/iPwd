@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   BackHandler
 } from "react-native";
+import string from '../utils/i18n';
 import PwdListItem from "../components/PwdListItem";
 /**
  * category:commonly Sensitive
@@ -39,7 +40,7 @@ export default class HomeScreen extends React.Component {
       const value = await AsyncStorage.getItem("pwds");
       this.setState({ virtualPwds: JSON.parse(!!value ? value : "[]") });
     } catch (error) {
-      Alert.alert("retrieve pwd occur error:" + error);
+      Alert.alert(string.retrieve_error + error);
     } finally {
       //delay 1s for let people feel it has done refreshing
       setTimeout(() => {
@@ -69,7 +70,7 @@ export default class HomeScreen extends React.Component {
           });
         this.setState({ virtualPwds: virualPwds });
       })
-      .catch(error => Alert.alert("search error:" + error));
+      .catch(error => Alert.alert(string.search_error + error));
   };
 
   /**退出app */
@@ -77,7 +78,7 @@ export default class HomeScreen extends React.Component {
     if (this.state.backCounter == 1) {
       BackHandler.exitApp();
     } else {
-      this.refs.toast.show("Press back again to exit app.");
+      this.refs.toast.show(string.exit_app);
       this.setState({ backCounter: 1 });
       setTimeout(() => this.setState({ backCounter: 0 }), 1000);
     }
@@ -92,7 +93,7 @@ export default class HomeScreen extends React.Component {
         if (pwds[i].key === key) pwds.splice(i, 1);
       }
       AsyncStorage.setItem("pwds", JSON.stringify(pwds)).then(err => {
-        if (!!err) Alert.alert("I`m sry", "delete occured problem:" + err);
+        if (!!err) Alert.alert(string.sry_alert, string.delete_error + err);
         else this._retrievePwd();
       });
     });
@@ -144,7 +145,7 @@ export default class HomeScreen extends React.Component {
           />
         ) : this.state.refreshing ? (
           <View style={style.nopwd_tip_home}>
-            <Text style={style.refreshing_tip}>Refreshing...</Text>
+            <Text style={style.refreshing_tip}>{string.refreshing}</Text>
           </View>
         ) : (
           <TouchableWithoutFeedback
@@ -152,8 +153,8 @@ export default class HomeScreen extends React.Component {
             style={{ flex: 1 }}
           >
             <View style={style.nopwd_tip_home}>
-              <Text style={style.nopwd_tip}>You have not add any password</Text>
-              <Text style={style.nopwd_tip}>Or click blank to refresh.</Text>
+              <Text style={style.nopwd_tip}>{string.pwd_empty}</Text>
+              <Text style={style.nopwd_tip}>{string.click_refresh}</Text>
             </View>
           </TouchableWithoutFeedback>
         )}

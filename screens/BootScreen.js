@@ -1,4 +1,5 @@
 import React from "react";
+import string from "../utils/i18n";
 import { Text, StyleSheet, View } from "react-native";
 
 export default class BootScreen extends React.Component {
@@ -10,7 +11,7 @@ export default class BootScreen extends React.Component {
   render() {
     return (
       <View style={style.welcome_word}>
-        <Text>Thanks for you use iPwd</Text>
+        <Text>{s.welcome_word}</Text>
       </View>
     );
   }

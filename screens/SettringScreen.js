@@ -7,7 +7,8 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
-import { List } from "antd-mobile-rn";
+import string from "../utils/i18n";
+import { List, PickerView } from "antd-mobile-rn";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -34,15 +35,15 @@ export default class SettingScreen extends React.Component {
   };
   _cleanCache = () => {
     Alert.alert(
-      "Clean Cache",
-      "Are you sure to clean cache within all passwords",
+      string.clean_cache,
+      string.clean_cache_confirm,
       [
         {
-          text: "Yes,I`m sure",
+          text: string.clean_cache_yes,
           onPress: this._doCleanCache
         },
         {
-          text: "Cancel",
+          text: string.clean_cache_no,
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         }
@@ -66,12 +67,12 @@ export default class SettingScreen extends React.Component {
           renderFooter={
             <View style={{ justifyContent: "center", alignItems: "center" }}>
               <Text style={{ color: "rgba(0,0,0,0.3)" }}>
-                Danger is very real, but fear, fear is a choice
+                {string.seeting_footer}
               </Text>
             </View>
           }
         >
-          <Brief>System</Brief>
+          <Brief>{string.system}</Brief>
           <Item
             thumb="https://img.icons8.com/color/96/ffffff/language.png"
             arrow="horizontal"
@@ -80,7 +81,7 @@ export default class SettingScreen extends React.Component {
               this.setState({ choiceLanguage: !this.state.choiceLanguage })
             }
           >
-            Language
+            {string.language}
           </Item>
           {this.state.choiceLanguage ? (
             <FlatList
@@ -108,33 +109,33 @@ export default class SettingScreen extends React.Component {
           <Item
             thumb="https://img.icons8.com/ultraviolet/40/ffffff/security-checked.png"
             arrow="horizontal"
-            extra="Local"
+            extra={string.local}
             onClick={() =>
               Alert.alert(
-                "I`m sorry",
-                "This function is missing.but what do I know,I`m just a dog.",
-                [{ text: "Got it" }]
+                string.sry_alert,
+                string.miss_function,
+                [{ text: string.got_it }]
               )
             }
           >
-            Security
+            {string.security}
           </Item>
           <Item
             thumb="https://img.icons8.com/ultraviolet/40/ffffff/tape-drive.png"
             arrow="horizontal"
-            extra={this.state.pwdCount + " Item"}
+            extra={this.state.pwdCount + string.item}
             onClick={this._cleanCache}
           >
-            Clean cache
+            {string.clean_cache}
           </Item>
-          <Brief>Coder</Brief>
+          <Brief>{string.coder}</Brief>
           <Item
             thumb="https://img.icons8.com/ultraviolet/40/ffffff/feedback.png"
             arrow="horizontal"
-            extra="Edit"
+            extra={string.edit}
             onClick={() => this.props.navigation.navigate("Feedback")}
           >
-            FeedBack
+          {string.feedBack}
           </Item>
           <Item
             thumb="https://img.icons8.com/office/40/ffffff/about.png"
@@ -142,7 +143,7 @@ export default class SettingScreen extends React.Component {
             extra="Simon&Hunt"
             onClick={() => this.props.navigation.navigate("About")}
           >
-            About
+            {string.about}
           </Item>
         </List>
       </View>
